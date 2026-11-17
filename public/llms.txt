@@ -1,0 +1,19 @@
+# Shakil Omondi
+
+> AI Android engineer and full-stack developer based in Nairobi, Kenya (UTC+3). Builds Android apps in Kotlin and Jetpack Compose, machine learning with PyTorch and TensorFlow, web apps with Next.js and Tailwind, and brand and graphic design. Open to remote work worldwide, local work in Kenya, and freelance or contract work.
+
+Goal: Senior AI Android Engineer, building apps that run models on the device and in the cloud.
+
+## Contact
+- Email: shakilochieng@gmail.com
+- LinkedIn: https://www.linkedin.com/in/shakil-developsanddesign/
+- X: https://x.com/_0xshakil
+- GitHub: https://github.com/theshakil
+- Behance: https://www.behance.net/shakilomondi
+- Playbook: https://www.playbook.com/shakil-omondi
+
+## Work
+Projects are being added. For source code see https://github.com/theshakil?tab=repositories
+
+## Toolkit
+Languages: Python, Java, Kotlin, JavaScript, TypeScript, HTML5, CSS3. Android: Jetpack Compose, Firebase, Room, Retrofit. AI and ML: PyTorch, TensorFlow, Keras, scikit-learn, NumPy, Pandas, Matplotlib. Web: Next.js, React, Tailwind CSS. Backend and data: Spring Boot, REST APIs, PostgreSQL, SQL. Tools: Git, GitHub Actions, Docker, Linux.

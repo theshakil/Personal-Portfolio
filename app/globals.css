@@ -1,0 +1,270 @@
+@import "tailwindcss";
+
+/* Night is the default. Day mode swaps these values when <html data-theme="light">. */
+:root {
+  --c-page: #120d0d;
+  --c-fg: #efe9ca;
+  --c-raise: #1c1615;
+  --c-mute: #9b9587;
+  --c-line: #2e2826;
+  --c-edge: #3a3a37;
+  --c-accent: #e8412e;
+  --c-on-accent: #130e0e;
+  --c-hero: #dcdcd8;
+  --c-hero-fg: #131313;
+  --c-panel: #efe9ca;
+  --c-panel-fg: #130e0e;
+  --c-foot: #0b0707;
+  --c-foot-fg: #efe9ca;
+  --c-foot-mute: #8f897c;
+  --c-foot-mark: #e8412e;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --c-page: #f3eed6;
+  --c-fg: #130e0e;
+  --c-raise: #e6dfbd;
+  --c-mute: #6a6454;
+  --c-line: #d2cba8;
+  --c-edge: #bfb78f;
+  --c-accent: #c9301c;
+  --c-on-accent: #f3eed6;
+  --c-hero: #e1ddc7;
+  --c-hero-fg: #130e0e;
+  --c-panel: #130e0e;
+  --c-panel-fg: #efe9ca;
+  color-scheme: light;
+}
+
+/* "light:" variant, for the few classes that differ between the two modes. */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+/* Fonts come from next/font in app/layout.tsx, which sets these two variables. */
+@theme inline {
+  --font-display: var(--font-display-face), "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-body-face), "Helvetica Neue", Arial, sans-serif;
+
+  --color-page: var(--c-page);
+  --color-fg: var(--c-fg);
+  --color-raise: var(--c-raise);
+  --color-mute: var(--c-mute);
+  --color-line: var(--c-line);
+  --color-edge: var(--c-edge);
+  --color-accent: var(--c-accent);
+  --color-on-accent: var(--c-on-accent);
+  --color-hero: var(--c-hero);
+  --color-hero-fg: var(--c-hero-fg);
+  --color-panel: var(--c-panel);
+  --color-panel-fg: var(--c-panel-fg);
+  --color-foot: var(--c-foot);
+  --color-foot-fg: var(--c-foot-fg);
+  --color-foot-mute: var(--c-foot-mute);
+  --color-foot-mark: var(--c-foot-mark);
+}
+
+/* Animations. */
+@theme {
+  --animate-lineup: lineup 0.95s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-rise: rise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  --animate-marquee: marquee 38s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  @keyframes lineup {
+    from {
+      transform: translateY(0.3em);
+      opacity: 0.12;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0.35;
+      translate: 0 28px;
+    }
+    to {
+      opacity: 1;
+      translate: none;
+    }
+  }
+}
+
+/* Page content column: one width and gutter shared by every section. */
+@utility wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--c-page);
+    color: var(--c-fg);
+    font-family: var(--font-body-face), "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 3px;
+  }
+}
+
+/* Soft accent glow that follows the pointer (position set by components/Spotlight.tsx). */
+.spot {
+  background-image: radial-gradient(
+    260px circle at var(--mx, -400px) var(--my, -400px),
+    color-mix(in srgb, var(--c-accent) 14%, transparent),
+    transparent 70%
+  );
+  background-repeat: no-repeat;
+}
+
+/* Pulsing dot beside the availability line. */
+.pulse {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 9999px;
+  background: var(--c-accent);
+  vertical-align: middle;
+  animation: ping 2s ease-out infinite;
+}
+@keyframes ping {
+  from {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--c-accent) 55%, transparent);
+  }
+  to {
+    box-shadow: 0 0 0 12px transparent;
+  }
+}
+
+/* Slowly drifting accent glow in the hero corner. */
+.hero-glow {
+  position: absolute;
+  top: -18vmax;
+  right: -14vmax;
+  width: 46vmax;
+  height: 46vmax;
+  border-radius: 9999px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--c-accent) 22%, transparent), transparent 65%);
+  pointer-events: none;
+  animation: drift 14s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  to {
+    transform: translate(-6vmax, 5vmax) scale(1.12);
+  }
+}
+
+/* Kotlin card in the hero: lines slide in one by one, then the caret blinks. */
+.ln {
+  animation: line-in 0.5s ease-out calc(var(--i, 0) * 140ms + 700ms) both;
+}
+@keyframes line-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+}
+.tok-c {
+  color: var(--c-mute);
+}
+.tok-k {
+  color: var(--c-accent);
+}
+.tok-s {
+  color: color-mix(in srgb, var(--c-fg) 78%, var(--c-accent));
+}
+.tok-t {
+  text-decoration: underline;
+  text-decoration-color: var(--c-edge);
+  text-underline-offset: 3px;
+}
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  background: var(--c-accent);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes hop {
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+/* Keyframes for the hero's inline shapes and scroll cue. */
+@keyframes bob {
+  to {
+    transform: translateY(-0.06em) rotate(-6deg);
+  }
+}
+@keyframes blobby {
+  from {
+    transform: rotate(-8deg) scale(1);
+  }
+  to {
+    transform: rotate(8deg) scale(1.12, 0.9);
+  }
+}
+@keyframes tilt {
+  from {
+    transform: rotate(-9deg);
+  }
+  to {
+    transform: rotate(9deg);
+  }
+}
+@keyframes wheel {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+}
+
+/* The menu locks page scroll while it is open. */
+html.menu-open {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
