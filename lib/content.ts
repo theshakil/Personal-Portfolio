@@ -20,7 +20,7 @@ export const menuLinks = [
 export const roles = ["AI Android Engineer", "Full-Stack Developer"] as const;
 
 export const socials = [
-  { label: "LinkedIn", short: "LinkedIn", handle: "shakil-developsanddesign", href: "https://www.linkedin.com/in/shakil-developsanddesign/" },
+  { label: "LinkedIn", short: "LinkedIn", handle: "shakil-developsanddesign", href: "https://www.linkedin.com/in/0xshakil/" },
   { label: "X / Twitter", short: "X", handle: "@_0xshakil", href: "https://x.com/_0xshakil" },
   { label: "GitHub", short: "GitHub", handle: "theshakil", href: "https://github.com/theshakil" },
   { label: "Behance", short: "Behance", handle: "shakilomondi", href: "https://www.behance.net/shakilomondi" },
