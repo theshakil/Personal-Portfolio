@@ -31,7 +31,7 @@ export function Contact() {
             className={`spot flex justify-between gap-4 border-t border-line py-4 text-base font-medium last:border-b ${rowHover}`}
           >
             {social.label}
-            <span className="text-right font-display text-[0.8125rem] font-normal text-mute [overflow-wrap:anywhere]">
+            <span className="text-right font-display text-[0.8125rem] font-normal text-mute wrap-anywhere">
               {social.handle}
             </span>
           </Reveal>

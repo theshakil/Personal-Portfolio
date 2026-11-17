@@ -14,7 +14,7 @@ export function Disciplines() {
           >
             <div
               aria-hidden="true"
-              className="self-start font-display text-[clamp(5rem,28vw,8rem)] font-normal leading-[0.9] tracking-[-0.04em] text-transparent transition-[color,-webkit-text-stroke-color] duration-[400ms] [-webkit-text-stroke:1px_var(--c-fg)] group-hover:text-accent group-hover:[-webkit-text-stroke-color:var(--c-accent)] min-[721px]:text-[clamp(5.5rem,17vw,14rem)]"
+              className="self-start font-display text-[clamp(5rem,28vw,8rem)] font-normal leading-[0.9] tracking-[-0.04em] text-transparent transition-[color,-webkit-text-stroke-color] duration-400 [-webkit-text-stroke:1px_var(--c-fg)] group-hover:text-accent group-hover:[-webkit-text-stroke-color:var(--c-accent)] min-[721px]:text-[clamp(5.5rem,17vw,14rem)]"
             >
               {String(i + 1).padStart(2, "0")}
             </div>

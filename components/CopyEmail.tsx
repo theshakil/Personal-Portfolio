@@ -40,7 +40,7 @@ export function CopyEmail({ email }: { email: string }) {
     <div className="flex flex-wrap items-center gap-x-5 gap-y-3.5">
       <code
         ref={text}
-        className="select-all font-display text-[clamp(0.95rem,2.4vw,1.5rem)] text-fg [overflow-wrap:anywhere]"
+        className="select-all font-display text-[clamp(0.95rem,2.4vw,1.5rem)] text-fg wrap-anywhere"
       >
         {email}
       </code>
